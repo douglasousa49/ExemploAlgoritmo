@@ -1,0 +1,74 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Algoritmo {
+    static Scanner ler = new Scanner(System.in);
+    static ArrayList<String> lista = new ArrayList<>();
+    
+    public static void main(String[] args) {
+        menu();
+    }
+    public static void menu(){
+        System.out.println();
+        System.out.println("1 - Nova Tarefa");
+        System.out.println("2 - Listar Tarefa");
+        System.out.println("3 - Remover Tarefa");
+        System.out.println("4 - Marcar como Resolvido");
+        System.out.println("5 - Sair");
+        var escolha = ler.nextInt();
+        
+        switch(escolha){
+            
+            case 1:
+                novaTarefa();
+                break;
+            case 2:
+                listarTarefa();
+                break;
+            case 3:
+                removerTarefa();
+                break;
+            case 4:
+                marcarResolvido();
+                break;
+            case 5:
+                return;
+            default:
+                System.out.println("Escolha invalida");
+                break;   
+        }
+        menu();
+    }
+    public static void novaTarefa(){
+        System.out.println("Qual sua nova tarefa:");
+        
+        ler.nextLine();
+        var tarefa = ler.nextLine();
+        
+        lista.add(tarefa);
+    }
+    public static void listarTarefa(){
+        System.out.println("Suas tarefas são: ");
+        for(int i = 0; i<lista.size(); i++){
+            System.out.println((i+1) + " " + lista.get(i));
+        }
+    }
+   public static void removerTarefa(){
+       System.out.println("Qual a posiçao da tarefa que voce deseja remover?");
+       var remover = ler.nextInt();
+       lista.remove(remover - 1);
+   }
+   public static void marcarResolvido(){
+       System.out.println("Qual a posição da tarefa que voce resolveu?");
+       var resolvido = ler.nextInt();
+       for(int i = 0; i<lista.size(); i++){
+           if(i == (resolvido - 1)){
+            //System.out.println((i + 1) + " "+ lista.get(i) +  " ok");
+            lista.set(i, lista.get(i) +  " ok");
+           }
+           else{
+               System.out.println((i + 1) + " " + lista.get(i));
+           }
+       }
+   }
+}
